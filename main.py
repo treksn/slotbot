@@ -20,7 +20,8 @@ async def check(update, context):
     else:
         message = 'Please provide a date_time, for example:\n/check mi14'
 
-    print(context.user_data)
+    user = update.effective_user
+    print(user.username)
     await context.bot.send_message(chat_id=update.effective_chat.id, text=message)
 
 # Define a function to handle the /book command
