@@ -9,8 +9,8 @@ config.read('config.ini')
 # '/book $date_time$' to book a slot.
 
 # Define a function to handle the /hello command
-async def hello(update, context):
-    message = "Welcome to the BoulderGarten Booking Bot. You can use the following commands:\n\n /check date_time - Checks free slots. \n\ndate_time must be in the format <b><i>dd</i></b>, <b><i>ddhhmm</i></b> or <b><i>ddhh</i></b> -> e.g. <b><i>mo</i></b>, <b><i>mi14</i></b> or <b><i>sa2030</i></b>"
+async def start(update, context):
+    message = "Welcome to the BoulderGarten SlotBot! 🎉🧗‍♂️\nI am ready to help you. Use these commands to manage your bookings:\n\n🕐 /check date_time - Find available slots\n\nPlease input the date_time in one of these formats:\n• dd (e.g. mo)\n• ddhh (e.g. mi20)\n• ddhhmm (e.g. sa2030)\n\nHappy climbing! 🤩🧗‍♀️"
     await context.bot.send_message(chat_id=update.effective_chat.id, text=message, parse_mode='HTML')
 
 # Define a function to handle the /available command
@@ -20,6 +20,7 @@ async def check(update, context):
     else:
         message = 'Please provide a date_time, for example:\n/check mi14'
 
+    print(context.user_data)
     await context.bot.send_message(chat_id=update.effective_chat.id, text=message)
 
 # Define a function to handle the /book command
@@ -47,7 +48,7 @@ def main():
     application = Application.builder().token(token).build()
 
     # Register handlers
-    application.add_handler(CommandHandler("hello", hello))
+    application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("check", check))
     # application.add_handler(CommandHandler("book", book))
     # application.add_handler(CommandHandler("alarm", auto_book))
