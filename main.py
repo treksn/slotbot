@@ -10,7 +10,9 @@ config.read('config.ini')
 
 # Define a function to handle the /hello command
 async def start(update, context):
-    message = "Welcome to the BoulderGarten SlotBot! 🎉🧗‍♂️\nI am ready to help you. Use these commands to manage your bookings:\n\n🕐 /check date_time - Find available slots\n\nPlease input the date_time in one of these formats:\n• dd (e.g. mo)\n• ddhh (e.g. mi20)\n• ddhhmm (e.g. sa2030)\n\nHappy climbing! 🤩🧗‍♀️"
+    message = "Welcome to the BoulderGarten SlotBot! 🎉🧗‍♂️\nI am here to help you! Use these commands to manage your bookings:\n\n🕐 /check date_time - Find available slots\n\nPlease input the date_time in one of these formats:\n• dd (e.g. mo)\n• ddhh (e.g. mi20)\n• ddhhmm (e.g. sa2030)\n\nHappy climbing! 🤩🧗‍♀️"
+    user = update.effective_user
+    print(user.username, '/start')
     await context.bot.send_message(chat_id=update.effective_chat.id, text=message, parse_mode='HTML')
 
 # Define a function to handle the /available command
@@ -21,7 +23,7 @@ async def check(update, context):
         message = 'Please provide a date_time, for example:\n/check mi14'
 
     user = update.effective_user
-    print(user.username)
+    print(f'{user.username} /check {context.args[0]}')
     await context.bot.send_message(chat_id=update.effective_chat.id, text=message)
 
 # Define a function to handle the /book command
