@@ -155,7 +155,7 @@ def fetch_courses_data():
         print(f"Request failed with status code {response.status_code}")
 
 
-def print_no_slots_available(select_time: datetime, print_time: True) -> str:
+def print_no_slots_available(select_time: datetime, print_time = True) -> str:
     date_time = select_time.strftime('%d.%m.')
     if print_time:
         date_time = select_time.strftime('%d.%m. %H:%M')
